@@ -21,13 +21,6 @@ services:
     networks:
       - portfolio
 
-  memcache:
-    image: memcached:latest
-    expose:
-      - "11211"
-    networks:
-      - portfolio
-
   php:
     build: docker-configs/dockerfiles/php
     expose:
@@ -36,7 +29,6 @@ services:
       - ./:/application
     depends_on:
       - db
-      - memcache
     networks:
       - portfolio
 

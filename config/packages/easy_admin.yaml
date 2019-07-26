@@ -21,3 +21,9 @@ easy_admin:
           - start_date
           - end_date
           - skills
+    Experience:
+      class: App\Entity\Experience
+      form:
+        fields:
+          - title
+          - { property: 'body', type: 'fos_ckeditor' }
