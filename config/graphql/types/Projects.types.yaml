@@ -1,0 +1,15 @@
+Project:
+  type: object
+  config:
+    description: "Project"
+    fields:
+      id:
+        type: "Int"
+      body:
+        type: "String"
+      start_date:
+        type: "DateTime"
+      end_date:
+        type: "DateTime"
+      skills:
+        type: "[Skill]"

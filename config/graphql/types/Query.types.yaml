@@ -1,0 +1,31 @@
+Query:
+  type: object
+  config:
+    description: "Apartments ORM repository"
+    fields:
+      User:
+        type: "User"
+        args:
+          id:
+            description: "Resolves using the user id."
+            type: "Int"
+        resolve: "@=resolver('User', [args])"
+      Users:
+        type: "[User]"
+        resolve: "@=resolver('Users', [args])"
+      Skill:
+        type: "Skill"
+        args:
+          id:
+            description: "Resolves using the skill id."
+            type: "Int"
+          title:
+            description: "Resolves using the skill title."
+            type: "String"
+        resolve: "@=resolver('Skill', [args])"
+      Skills:
+        type: "[Skill]"
+        resolve: "@=resolver('Skills', [args])"
+      Projects:
+        type: "[Project]"
+        resolve: "@=resolver('Projects', [args])"

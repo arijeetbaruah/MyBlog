@@ -1,0 +1,13 @@
+Skill:
+  type: object
+  config:
+    description: "Skill"
+    fields:
+      id:
+        type: "Int"
+      title:
+        type: "String"
+      level:
+        type: "Int"
+      projects:
+        type: "[Project]"

@@ -39,7 +39,7 @@ class Projects
     private $end_date;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\skills", inversedBy="projects")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Skills", inversedBy="projects")
      */
     private $skills;
 
