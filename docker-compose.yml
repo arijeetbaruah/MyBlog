@@ -1,0 +1,65 @@
+version: '3.0'
+services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes: 
+      - portfolio-data-store:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: portfolio
+      MYSQL_USER: arijeet
+      MYSQL_PASSWORD: baruah
+    networks:
+      - portfolio
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - portfolio
+
+  memcache:
+    image: memcached:latest
+    expose:
+      - "11211"
+    networks:
+      - portfolio
+
+  php:
+    build: docker-configs/dockerfiles/php
+    expose:
+      - "9000"
+    volumes:
+      - ./:/application
+    depends_on:
+      - db
+      - memcache
+    networks:
+      - portfolio
+
+  web:
+    image: nginx:latest
+    command: sh /application/docker-configs/postscripts/nginx.sh
+    volumes:
+      - ./:/application
+      - ./docker-configs/ngnix/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker-configs/ngnix/site.conf:/etc/nginx/conf.d/local.portfolio.com.conf
+    ports:
+      - "80:80"
+    expose:
+      - "80"
+    depends_on:
+      - php
+    networks:
+      portfolio:
+        aliases:
+          - local.portfolio.com
+volumes:
+  portfolio-data-store:
+
+networks:
+  portfolio:
+    driver: bridge
