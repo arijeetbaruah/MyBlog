@@ -27,3 +27,5 @@ easy_admin:
         fields:
           - title
           - { property: 'body', type: 'fos_ckeditor' }
+          - { property: 'start_date', type_options: { widget: 'single_text' } }
+          - { property: 'end_date', type_options: { widget: 'single_text' } }
