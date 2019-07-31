@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles, Appear, Words } from 'arwes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const styles = () => ({
   root: {
@@ -23,7 +24,7 @@ const TextIcon = props => {
   return (
     <div className={cls} {...etc}>
       <Appear animate show={show}>
-        <i className={`mdi mdi-${icon}`} />
+        <FontAwesomeIcon icon={icon} />
       </Appear>
       {' '}
       <Words animate show={show}>{children}</Words>

@@ -14,6 +14,9 @@
     },
     "dependencies": {
         "@babel/preset-react": "^7.0.0",
+        "@fortawesome/fontawesome-svg-core": "^1.2.20",
+        "@fortawesome/free-solid-svg-icons": "^5.10.0",
+        "@fortawesome/react-fontawesome": "^0.1.4",
         "@types/lodash": "^4.14.136",
         "@types/react": "^16.8.23",
         "@types/react-dom": "^16.8.5",
@@ -38,6 +41,7 @@
         "redux-promise-middleware": "^6.1.1",
         "redux-thunk": "^2.3.0",
         "sass-loader": "^7.0.1",
+        "spectacle": "^5.5.0",
         "ts-loader": "^5.3.0",
         "typescript": "^3.5.3"
     }

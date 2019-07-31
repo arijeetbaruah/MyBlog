@@ -8,6 +8,7 @@ import ListSkillComponent from './skill/listSkill';
 import store from '../reducer/index';
 import { createAppTheme, sounds } from '../withTemplate';
 import history from '../history';
+import Slider from './slider/index'
 
 const RouterComponent = () => {
     return (
@@ -19,6 +20,7 @@ const RouterComponent = () => {
                             <Route exact path="/" component={HomeComponent} />
                             <Route exact path="/skill" component={ListSkillComponent} />
                             <Route path="/skill/:id" component={ViewSkillComponent} />
+                            <Route path="/test" component={Slider} />
                         </Switch>
                     </Router>
                 </Provider>

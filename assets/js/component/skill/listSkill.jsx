@@ -53,7 +53,7 @@ const styles = theme => ({
     titleRight: {
       float: 'right',
     },
-  });
+});
   
 
 class SkillComponent extends Component {
@@ -145,7 +145,7 @@ class SkillComponent extends Component {
                                                     onEntered: () => this.setState({ animLvl2: true })
                                                 }}
                                                 />
-                                                <Words animate show={animLvl1}>Projects</Words>
+                                                <Words animate show={animLvl1}>Skills</Words>
                                             <Appear className={`mdi mdi-chevron-double-left ${classes.titleRight}`} animate show={animLvl1} />
                                             {
                                                 _.map(Skills, (skill, key) => (

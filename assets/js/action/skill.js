@@ -30,6 +30,8 @@ export function GetSkills() {
             level
             projects{
               title
+              start_date
+              end_date
             }
           }
         }

@@ -4,7 +4,6 @@ import _ from 'lodash';
 import {
     Arwes,
     withStyles,
-    Project,
     createLoader,
     Loading,
     createResponsive,
@@ -12,7 +11,8 @@ import {
     Content,
     Row,
     Appear,
-    Words
+    Words,
+    Table
 } from 'arwes';
 import {
     GetSkill
@@ -168,19 +168,17 @@ class SkillComponent extends Component {
                                                 }}
                                                 />
                                                 <Words animate show={animLvl1}>Projects</Words>
-                                                {
+                                            <Appear className={`mdi mdi-chevron-double-left ${classes.titleRight}`} animate show={animLvl1} />
+                                            <Table
+                                                animate
+                                                show={animLvl1}
+                                                headers={['name', 'start date', 'end date']}
+                                                dataset={
                                                     _.map(Skill.projects, (project, key) => (
-                                                        <Project
-                                                            animate
-                                                            key={key}
-                                                            show={anim.entered}
-                                                            header={project.title}
-                                                            >
-                                                            <div dangerouslySetInnerHTML={{__html: project.body}} />
-                                                        </Project>
+                                                        [project.title, project.start_date, project.end_date]
                                                     ))
                                                 }
-                                            <Appear className={`mdi mdi-chevron-double-left ${classes.titleRight}`} animate show={animLvl1} />
+                                                />
                                         </Row>
                                     </Wrap>
                                 </div>
