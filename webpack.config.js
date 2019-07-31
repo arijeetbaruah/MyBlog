@@ -59,7 +59,7 @@ Encore
     .enableSassLoader()
 
     // uncomment if you use TypeScript
-    .enableTypeScriptLoader()
+    // .enableTypeScriptLoader()
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
@@ -71,6 +71,13 @@ Encore
     // uncomment if you use API Platform Admin (composer req api-admin)
     .enableReactPreset()
     .addEntry('admin', './assets/js/admin.js')
+    .addLoader({
+        test: /\.mp3$/,
+        loader: 'file-loader',
+        options: {
+            name: '[path][name].[ext]',
+        },
+    })
     .copyFiles([
         {from: './node_modules/ckeditor/', to: 'ckeditor/[path][name].[ext]', pattern: /\.(js|css)$/, includeSubdirectories: false},
         {from: './node_modules/ckeditor/adapters', to: 'ckeditor/adapters/[path][name].[ext]'},

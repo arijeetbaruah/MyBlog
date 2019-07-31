@@ -5,6 +5,8 @@ Project:
     fields:
       id:
         type: "Int"
+      title:
+        type: "String"
       body:
         type: "String"
       start_date:
