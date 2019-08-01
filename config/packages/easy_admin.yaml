@@ -18,8 +18,8 @@ easy_admin:
         fields:
           - title
           - { property: 'body', type: 'fos_ckeditor' }
-          - start_date
-          - end_date
+          - { property: 'start_date', type_options: { widget: 'single_text' } }
+          - { property: 'end_date', type_options: { widget: 'single_text' } }
           - skills
     Experience:
       class: App\Entity\Experience

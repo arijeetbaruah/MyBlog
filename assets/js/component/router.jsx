@@ -5,6 +5,8 @@ import { ThemeProvider, createTheme, SoundsProvider, createSounds } from 'arwes'
 import HomeComponent from './homecomponent';
 import ViewSkillComponent from './skill/viewSkill';
 import ListSkillComponent from './skill/listSkill';
+import ListProjectComponent from './project/list';
+import ViewProjectComponent from './project/view';
 import store from '../reducer/index';
 import { createAppTheme, sounds } from '../withTemplate';
 import history from '../history';
@@ -20,7 +22,8 @@ const RouterComponent = () => {
                             <Route exact path="/" component={HomeComponent} />
                             <Route exact path="/skill" component={ListSkillComponent} />
                             <Route path="/skill/:id" component={ViewSkillComponent} />
-                            <Route path="/test" component={Slider} />
+                            <Route exact path="/project" component={ListProjectComponent} />
+                            <Route exact path="/project/:id" component={ViewProjectComponent} />
                         </Switch>
                     </Router>
                 </Provider>

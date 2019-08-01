@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles, Footer as ArwesFooter, Row } from 'arwes';
-
+import { faAtom } from '@fortawesome/free-solid-svg-icons';
 import TextIcon from './textIcon';
 import Wrap from './wrap';
 import Link from './link';
@@ -55,7 +55,7 @@ const Footer = (props) => {
                     <div className={classes.left} />
                     <div className={classes.right}>
                     <Link href='https://arwes.romelperez.com' target='arwes' onLink={onLink}>
-                        <TextIcon show={anim.entered} icon='chemical-weapon'>Made with Arwes</TextIcon>
+                        <TextIcon show={anim.entered} icon={faAtom}>Made with Arwes</TextIcon>
                     </Link>
                     </div>
                 </div>

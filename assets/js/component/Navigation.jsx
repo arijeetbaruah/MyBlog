@@ -1,15 +1,22 @@
 import React from 'react';
 import { withStyles, Highlight, Appear, Words } from 'arwes';
 import _ from 'lodash';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCode,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faLinkedin
+} from '@fortawesome/free-brands-svg-icons';
 import Link from './link';
 
 const linksList = [{
     name: 'Skills',
-    icon: 'apps',
+    icon: {faCode},
     href: '/skill'
 }, {
     name: 'Curriculum',
-    icon: 'chip',
+    icon: {faLinkedin},
     href: 'https://www.linkedin.com/in/arijeet-baruah/',
     target: '_blank'
 }];
@@ -56,7 +63,7 @@ const Navigation = props => {
           <Highlight className={classes.button} animate layer='header'>
             <div className={cls} {...etc}>
                 <Appear animate show={show}>
-                    <i className={`mdi mdi-${linkItem.icon}`} />
+                  <FontAwesomeIcon icon={linkItem.icon} />
                 </Appear>
                 {' '}
                 <Words animate show={show}>{linkItem.name}</Words>

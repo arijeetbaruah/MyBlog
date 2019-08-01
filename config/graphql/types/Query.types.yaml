@@ -29,3 +29,13 @@ Query:
       Projects:
         type: "[Project]"
         resolve: "@=resolver('Projects', [args])"
+      Project:
+        type: "Project"
+        args:
+          id:
+            description: "Resolves using the project id."
+            type: "Int"
+          title:
+            description: "Resolves using the project title."
+            type: "String"
+        resolve: "@=resolver('Project', [args])"
