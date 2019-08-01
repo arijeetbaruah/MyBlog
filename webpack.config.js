@@ -1,6 +1,7 @@
 var Encore = require('@symfony/webpack-encore');
 var WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
+var OfflinePlugin = require('offline-plugin');
 
 const manifest = new WebpackAssetsManifest({
     output: 'manifest-test.json',
@@ -101,6 +102,9 @@ Encore
             name: '[path][name].[ext]',
         },
     })
+    .addPlugin(new OfflinePlugin({
+        "FALLBACK": '/offline'
+    }))
     .addPlugin(manifest, -10)
     .addPlugin(new WorkboxWebpackPlugin.GenerateSW({
         clientsClaim: true,

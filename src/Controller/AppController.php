@@ -16,4 +16,12 @@ class AppController extends AbstractController
             'controller_name' => 'AppController',
         ]);
     }
+
+    /**
+     * @Route("/offline", name="app_offline")
+     */
+    public function offline()
+    {
+        return $this->render('app/offline.html.twig');
+    }
 }
