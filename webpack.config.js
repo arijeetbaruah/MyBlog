@@ -1,5 +1,27 @@
 var Encore = require('@symfony/webpack-encore');
 var WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+
+const manifest = new WebpackAssetsManifest({
+    output: 'manifest-test.json',
+});
+manifest.hooks.apply.tap("YourPluginName", function(manifest) {
+    const icons = [
+        {
+            "src": "favicon.ico",
+            "sizes": "64x64 32x32 24x24 16x16",
+            "type": "image/x-icon"
+        }
+    ];
+    manifest.set("name", "Arijeet Baruah's Portfolio");
+    manifest.set("short_name", "arijeetportfilio");
+    manifest.set("start_url", ".");
+    manifest.set("background_color", "#3367D6");
+    manifest.set("theme_color", "#3367D6");
+    manifest.set("orientation", "landscape");
+    manifest.set("display", "standalone");
+    manifest.set("icons", icons);
+});
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -79,6 +101,7 @@ Encore
             name: '[path][name].[ext]',
         },
     })
+    .addPlugin(manifest, -10)
     .addPlugin(new WorkboxWebpackPlugin.GenerateSW({
         clientsClaim: true,
         exclude: [/\.map$/, /asset-manifest\.json$/],
@@ -90,7 +113,7 @@ Encore
           // public/ and not a SPA route
           new RegExp('/[^/]+\\.[^/]+$'),
         ],
-      }))
+      }), -15)
     .copyFiles([
         {from: './node_modules/ckeditor/', to: 'ckeditor/[path][name].[ext]', pattern: /\.(js|css)$/, includeSubdirectories: false},
         {from: './node_modules/ckeditor/adapters', to: 'ckeditor/adapters/[path][name].[ext]'},

@@ -22,6 +22,7 @@
         "@types/react": "^16.8.23",
         "@types/react-dom": "^16.8.5",
         "@types/react-redux": "^7.1.1",
+        "app-manifest-webpack-plugin": "^1.2.0",
         "arwes": "^1.0.0-alpha.5",
         "axios": "^0.19.0",
         "bootstrap": "^4.3.1",
@@ -46,6 +47,7 @@
         "spectacle": "^5.5.0",
         "ts-loader": "^5.3.0",
         "typescript": "^3.5.3",
+        "webpack-assets-manifest": "^3.1.1",
         "workbox-webpack-plugin": "^4.3.1"
     }
 }
