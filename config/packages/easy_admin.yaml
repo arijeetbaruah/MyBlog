@@ -5,6 +5,12 @@ easy_admin:
     display_avatar: false
     name_property_path: 'Username'
   design:
+    menu:
+      - 'Skills'
+      - 'Experience'
+      - label: 'Clients'
+      - 'Projects'
+      - 'ProjectCodeSnippets'
     form_theme:
       - '@EasyAdmin/form/bootstrap_4.html.twig'
     brand_color: 'red'
@@ -21,6 +27,7 @@ easy_admin:
           - { property: 'start_date', type_options: { widget: 'single_text' } }
           - { property: 'end_date', type_options: { widget: 'single_text' } }
           - skills
+          - code_snippet_id
     Experience:
       class: App\Entity\Experience
       form:
@@ -29,3 +36,10 @@ easy_admin:
           - { property: 'body', type: 'fos_ckeditor' }
           - { property: 'start_date', type_options: { widget: 'single_text' } }
           - { property: 'end_date', type_options: { widget: 'single_text' } }
+    ProjectCodeSnippets:
+      class: App\Entity\ProjectCodeSnippets
+      form:
+        fields:
+          - project
+          - name
+          - code

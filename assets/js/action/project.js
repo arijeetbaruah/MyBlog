@@ -10,6 +10,11 @@ export function GetProject(id) {
                 body
                 start_date
                 end_date
+                code_snippet_id{
+                    id
+                    name
+                    code
+                }
                 skills{
                     id
                     title

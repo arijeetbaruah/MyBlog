@@ -1,0 +1,11 @@
+ProjectCodeSnippets:
+  type: object
+  config:
+    description: "ProjectCodeSnippets"
+    fields:
+      id:
+        type: "Int"
+      name:
+        type: "String"
+      code:
+        type: "String"

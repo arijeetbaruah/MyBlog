@@ -12,8 +12,7 @@ import {
     Content,
     Row,
     Appear,
-    Words,
-    Paragraph
+    Words
 } from 'arwes';
 import {
     GetProjects
@@ -159,7 +158,7 @@ class ListProjectComponent extends Component {
                                                             onEntered: () => this.setState({ animLvl3: true })
                                                         }}
                                                         onClick={() => {
-                                                            history.push(`/project/${project.id}`);
+                                                            window.open(`/#/project/${project.id}`);
                                                         }}
                                                         >
                                                             <Appear

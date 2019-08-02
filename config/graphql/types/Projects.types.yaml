@@ -15,3 +15,5 @@ Project:
         type: "DateTime"
       skills:
         type: "[Skill]"
+      code_snippet_id:
+        type: "[ProjectCodeSnippets]"

@@ -97,9 +97,7 @@ class ViewProjectComponent extends Component {
     }
 
     render() {
-        const { shownIndex, animLvl0, animLvl1, animLvl2, animLvl3 } = this.state;
-        const { classes } = this.props;
-        const { background, pattern } = resources;
+        const { shownIndex } = this.state;
 
         const { data, loading } = this.props.ProjectReducer.project;
 
@@ -119,18 +117,48 @@ class ViewProjectComponent extends Component {
         const talk = {
             "slides": [
                 {
-                    "children": [{
-                    "element": "Heading",
-                    "children": Project.title
-                    }]
+                    "children": [
+                        {
+                            "element": "Heading",
+                            "children": Project.title
+                        }
+                    ]
                 },{
                     "children": [{
                         "element": "Text",
                         "children": Project.body
                     }]
+                },{
+                    "children": [
+                        {
+                            "element": "Heading",
+                            "children": "Skills Used"
+                        },{
+                            "element": "Table",
+                            "children": {
+                                "headers": ['title', 'level'],
+                                "dataset": _.map(Project.skills, (skill) => [skill.title, skill.level]),
+                            }
+                        }
+                    ]
                 }
             ]
         };
+
+        const codeSliders = _.map(Project.code_snippet_id, (cs) => ({
+            "children": [
+                {
+                    "element": "Heading",
+                    "children": cs.name
+                },
+                {
+                    "element": "Code",
+                    "children": cs.code
+                }
+            ]
+        }));
+        talk.slides = _.concat(talk.slides, codeSliders);
+
         if (Project.start_date) {
             talk.slides[0].children.push({
                 "element": "Paragraph",

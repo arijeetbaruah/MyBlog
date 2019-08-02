@@ -6,8 +6,7 @@ import {
 import * as arwes from 'arwes';
 import {
     Deck,
-    Slide,
-    Text
+    Slide
 } from 'spectacle';
 import { createMemoryHistory } from 'history';
 import createSpectacleThemeScreen from 'spectacle/lib/themes/default/screen';
@@ -34,10 +33,20 @@ const styles = () => ({
         textAlign: 'left',
       },
     },
+    table: {
+      '& thead': {
+        'text-align': 'center'
+      },
+    },
     codeBlock: {
       margin: 0,
       maxHeight: 700,
     },
+    sliderDiv: {
+      '& ul li': {
+        display: "list-item",
+      }
+    }
 });
 
 class Slider extends Component {
@@ -143,8 +152,17 @@ class Slider extends Component {
           {children}
         </arwes.Code>
       );
+      case 'Table': return (
+        <arwes.Table
+          className={classes.table}
+          animate
+          headers={children.headers}
+          dataset={children.dataset}
+          />
+      )
       case 'Text': return (
         <arwes.Appear
+          className={classes.sliderDiv}
           key={key}
           animate
           {...props}
@@ -190,20 +208,22 @@ class Slider extends Component {
                 <div className={classes.root}>
                     {
                         animLvl1 && (
-                            <Deck
-                                className={deckClassName}
-                                progress="bar"
-                                history={newHistory}
-                                theme={spectacleTheme}
-                                >
-                                {(talk.slides || []).map((slide, index) => (
-                                  <Slide key={index} className={slideClassName} {...slide.props}>
-                                    {(slide.children || []).map((child, index2) => (
-                                      this.createElement(child, `S${index}C${index2}`)
+                            <>
+                                <Deck
+                                    className={deckClassName}
+                                    progress="bar"
+                                    history={newHistory}
+                                    theme={spectacleTheme}
+                                    >
+                                    {(talk.slides || []).map((slide, index) => (
+                                    <Slide key={index} className={slideClassName} {...slide.props}>
+                                        {(slide.children || []).map((child, index2) => (
+                                            this.createElement(child, `S${index}C${index2}`)
+                                        ))}
+                                    </Slide>
                                     ))}
-                                  </Slide>
-                                ))}
-                            </Deck>
+                                </Deck>
+                            </>
                         )
                     }
                 </div>

@@ -43,9 +43,15 @@ class Projects
      */
     private $skills;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProjectCodeSnippets", mappedBy="project")
+     */
+    private $code_snippet_id;
+
     public function __construct()
     {
         $this->skills = new ArrayCollection();
+        $this->code_snippet_id = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -130,5 +136,36 @@ class Projects
     public function __toString()
     {
         return $this->title;
+    }
+
+    /**
+     * @return Collection|ProjectCodeSnippets[]
+     */
+    public function getCodeSnippetId(): Collection
+    {
+        return $this->code_snippet_id;
+    }
+
+    public function addCodeSnippetId(ProjectCodeSnippets $codeSnippetId): self
+    {
+        if (!$this->code_snippet_id->contains($codeSnippetId)) {
+            $this->code_snippet_id[] = $codeSnippetId;
+            $codeSnippetId->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCodeSnippetId(ProjectCodeSnippets $codeSnippetId): self
+    {
+        if ($this->code_snippet_id->contains($codeSnippetId)) {
+            $this->code_snippet_id->removeElement($codeSnippetId);
+            // set the owning side to null (unless already changed)
+            if ($codeSnippetId->getProject() === $this) {
+                $codeSnippetId->setProject(null);
+            }
+        }
+
+        return $this;
     }
 }
