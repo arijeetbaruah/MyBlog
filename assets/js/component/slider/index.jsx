@@ -3,14 +3,17 @@ import {
     Arwes,
     withStyles,
 } from 'arwes';
+import * as arwes from 'arwes';
 import {
     Deck,
     Slide,
     Text
 } from 'spectacle';
-import history from '../../history';
+import { createMemoryHistory } from 'history';
 import createSpectacleThemeScreen from 'spectacle/lib/themes/default/screen';
 import createSpectacleThemePrint from 'spectacle/lib/themes/default/print';
+
+const newHistory = createMemoryHistory();
 
 const styles = () => ({
     '@global': {
@@ -89,13 +92,92 @@ class Slider extends Component {
       }
 
     componentDidMount () {
-        this.defineSpectacleTheme();
+      this.defineSpectacleTheme();
 
-        this.setState({ animLvl1: true });
+      this.setState({ animLvl1: true });
+    }
+
+    /**
+   * Create list of dynamic React components for the presentation.
+   * @param  {Object[]} elements - Array of components definitions.
+   * @param  {String} key - Identifier.
+   * @return {React.Component[]}
+   */
+  createElements (elements, key) {
+    return elements.map((item, index) => this.createElement(item, `${key}${index}`));
+  }
+
+  /**
+   * Create a dynamic React component for the presentation.
+   * @param  {Object|String} opts - The React component properties.
+   * @param  {String} key - Identifier.
+   * @return {React.Component}
+   */
+  createElement (opts, key) {
+    const { classes } = this.props;
+
+    if (Array.isArray(opts)) {
+      return this.createElements(opts, key);
+    }
+
+    if (typeof opts === 'string') {
+      return <arwes.Words animate>{opts}</arwes.Words>;
+    }
+
+    const { element, props, children } = opts;
+
+    switch (element) {
+      case 'Image': return <arwes.Image key={key} animate {...props} />;
+      case 'ImagePlain': return (
+        <arwes.Appear key={key} animate>
+          <spectacle.Image {...props} />
+        </arwes.Appear>
+      );
+      case 'Code': return (
+        <arwes.Code
+          className={classes.codeBlock}
+          key={key}
+          animate
+          {...props}
+        >
+          {children}
+        </arwes.Code>
+      );
+      case 'Text': return (
+        <arwes.Appear
+          key={key}
+          animate
+          {...props}
+        >
+          <div dangerouslySetInnerHTML={{__html: children}}/>
+        </arwes.Appear>
+      )
+
+      // General content components.
+      case 'Heading':
+      case 'Paragraph':
+      case 'Blockquote':
+      case 'Link':
+      case 'List': {
+        const SelectedElement = arwes[element];
+        return (
+          <SelectedElement key={key} {...props}>
+            {this.createElement(children, `${key}C`)}
+          </SelectedElement>
+        );
       }
 
+      // A built-in component.
+      default: return React.createElement(
+        element,
+        { ...props, key },
+        this.createElement(children, `${key}C`)
+      );
+    }
+  }
+
     render() {
-        const { classes, className, deckClassName, slideClassName } = this.props;
+        const { classes, className, deckClassName, talk, slideClassName } = this.props;
         const { spectacleTheme, animLvl1 } = this.state;
 
         return (
@@ -111,15 +193,16 @@ class Slider extends Component {
                             <Deck
                                 className={deckClassName}
                                 progress="bar"
-                                history={history}
+                                history={newHistory}
                                 theme={spectacleTheme}
                                 >
-                                <Slide>
-                                    <Text>hi</Text>
-                                </Slide>
-                                <Slide>
-                                    <Text>hello</Text>
-                                </Slide>
+                                {(talk.slides || []).map((slide, index) => (
+                                  <Slide key={index} className={slideClassName} {...slide.props}>
+                                    {(slide.children || []).map((child, index2) => (
+                                      this.createElement(child, `S${index}C${index2}`)
+                                    ))}
+                                  </Slide>
+                                ))}
                             </Deck>
                         )
                     }

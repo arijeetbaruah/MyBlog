@@ -8,7 +8,8 @@ import {
   Content,
   Words,
   Button,
-  Loading
+  Loading,
+  Image
 } from 'arwes';
 import Link from './link';
 import { resources } from './../withTemplate';
@@ -17,6 +18,7 @@ import {
     faCode,
     faMapMarkedAlt
 } from '@fortawesome/free-solid-svg-icons';
+import profile from '../../images/arijeetbaruah.jpg';
 
 const styles = theme => ({
     root: {
@@ -107,7 +109,7 @@ class HomeComponent extends Component {
         const responsive = this.responsive.get();
         const background = utils.getResponsiveResource(resources.background, responsive);
 
-        this.loader.load({ images: [background] }, { timeout: 5 * 1000 }).
+        this.loader.load({ images: [background, profile] }, { timeout: 5 * 1000 }).
         then(() => {}, () => {}).
         then(() => this.setState({ shownIndex: true, animLvl0: true }));
     }
@@ -146,6 +148,14 @@ class HomeComponent extends Component {
                     anim => (
                         <div className={classes.root}>
                             <Content className={classes.content}>
+                            <div className={classes.section}>
+                              <Image
+                                className={classes.profile}
+                                animate
+                                show={anim.entered}
+                                resources={profile}
+                              />
+                            </div>
                             <div className={classes.section}>
                                 <h1><Words animate show={anim.entered}>
                                 Arijeet Baruah

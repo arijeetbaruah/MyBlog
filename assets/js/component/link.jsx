@@ -24,7 +24,7 @@ const Link = props => {
         onClick && onClick(ev);
     
         const { pathname, search } = window.location;
-        if (pathname + search === href) {
+        if ((pathname + search === href) && href !== '/') {
           return;
         }
     

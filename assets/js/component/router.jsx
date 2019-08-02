@@ -10,7 +10,6 @@ import ViewProjectComponent from './project/view';
 import store from '../reducer/index';
 import { createAppTheme, sounds } from '../withTemplate';
 import history from '../history';
-import Slider from './slider/index'
 
 const RouterComponent = () => {
     return (

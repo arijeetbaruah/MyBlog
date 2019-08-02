@@ -4,21 +4,18 @@ import _ from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCode,
+  faProjectDiagram
 } from '@fortawesome/free-solid-svg-icons';
-import {
-  faLinkedin
-} from '@fortawesome/free-brands-svg-icons';
 import Link from './link';
 
 const linksList = [{
     name: 'Skills',
-    icon: {faCode},
+    icon: faCode,
     href: '/skill'
 }, {
-    name: 'Curriculum',
-    icon: {faLinkedin},
-    href: 'https://www.linkedin.com/in/arijeet-baruah/',
-    target: '_blank'
+    name: 'Project',
+    icon: faProjectDiagram,
+    href: '/project'
 }];
 
 const styles = theme => ({
