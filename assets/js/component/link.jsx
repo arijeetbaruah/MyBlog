@@ -40,7 +40,7 @@ const Link = props => {
             window.location.href = href;
           }
           else {
-            history.push(href);
+            window.location.href = href;
           }
         }, theme.animTime);
     };

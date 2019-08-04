@@ -158,7 +158,7 @@ class ListProjectComponent extends Component {
                                                             onEntered: () => this.setState({ animLvl3: true })
                                                         }}
                                                         onClick={() => {
-                                                            window.open(`/#/project/${project.id}`);
+                                                            window.open(`/project/${project.id}`);
                                                         }}
                                                         >
                                                             <Appear

@@ -11,8 +11,8 @@ import {
 } from 'arwes';
 import moment from 'moment';
 import {
-    GetSkill
-} from '../../action/skill';
+    GetExperience
+} from '../../action/experience';
 import { resources } from '../../withTemplate';
 import Slider from '../slider/index';
 
@@ -66,7 +66,7 @@ class SkillComponent extends Component {
             getTheme: () => props.theme
         });
 
-        props.GetSkill(props.match.params.id);
+        props.GetExperience(props.match.params.id);
         this.onLink = this.onLink.bind(this);
     }
 
@@ -88,11 +88,9 @@ class SkillComponent extends Component {
     }
 
     render() {
-        const { shownIndex, animLvl0, animLvl1, animLvl2, animLvl3 } = this.state;
-        const { classes } = this.props;
-        const { background, pattern } = resources;
+        const { shownIndex } = this.state;
 
-        const { data, loading } = this.props.SkillReducer.skill;
+        const { data, loading } = this.props.ExperienceReducer.experience;
 
         if (loading || _.isNull(data)) {
             return (<Arwes><Loading
@@ -105,8 +103,8 @@ class SkillComponent extends Component {
                 /></Arwes>)
         }
 
-        const { Skill } = data.data;
-        const { projects } = data.data.Skill;
+        const { Experience } = data.data;
+        const { Projects } = Experience;
 
         const talk = {
             "slides": [
@@ -114,30 +112,48 @@ class SkillComponent extends Component {
                     "children": [
                         {
                             "element": "Heading",
-                            "children": Skill.title
+                            "children": Experience.title
                         },
+                    ]
+                },
+                {
+                    "children": [
                         {
                             "element": "Text",
-                            "children": `Level: ${Skill.level}`
-                        }
+                            "children": Experience.body
+                        },
                     ]
-                },{
+                },
+                {
                     "children": [
                         {
                             "element": "Heading",
-                            "children": "Project Used In"
+                            "children": "Projects"
                         },
                         {
                             "element": "Table",
                             "children": {
-                                "headers": ['title', 'Start Date', 'End Date'],
-                                "dataset": _.map(projects, (project) => [project.title, project.start_date ? moment(project.start_date).format('DD MMM YYYY'):'', project.end_date ? moment(project.end_date).format('DD MMM YYYY'): '']),
+                                "headers": ['title'],
+                                "dataset": _.map(Projects, (skill) => [skill.title]),
                             }
                         }
                     ]
                 },
             ]
         };
+
+        if (Experience.start_date) {
+            talk.slides[0].children.push({
+                "element": "Paragraph",
+                "children": `Start Date: ${moment(Experience.start_date).format('DD/MM/YYYY')}`
+            });
+        }
+        if (Experience.end_date) {
+            talk.slides[0].children.push({
+                "element": "Paragraph",
+                "children": `End Date: ${moment(Experience.end_date).format('DD/MM/YYYY')}`
+            });
+        }
 
         return (
             <Slider talk={talk}/>
@@ -146,11 +162,11 @@ class SkillComponent extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    SkillReducer: state.SkillReducer
+    ExperienceReducer: state.ExperienceReducer
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    GetSkill: (id) => dispatch(GetSkill(id))
+    GetExperience: (id) => dispatch(GetExperience(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(SkillComponent));

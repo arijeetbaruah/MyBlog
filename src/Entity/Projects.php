@@ -48,10 +48,16 @@ class Projects
      */
     private $code_snippet_id;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Experience", mappedBy="Projects")
+     */
+    private $experiences;
+
     public function __construct()
     {
         $this->skills = new ArrayCollection();
         $this->code_snippet_id = new ArrayCollection();
+        $this->experiences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -164,6 +170,34 @@ class Projects
             if ($codeSnippetId->getProject() === $this) {
                 $codeSnippetId->setProject(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Experience[]
+     */
+    public function getExperiences(): Collection
+    {
+        return $this->experiences;
+    }
+
+    public function addExperience(Experience $experience): self
+    {
+        if (!$this->experiences->contains($experience)) {
+            $this->experiences[] = $experience;
+            $experience->addProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExperience(Experience $experience): self
+    {
+        if ($this->experiences->contains($experience)) {
+            $this->experiences->removeElement($experience);
+            $experience->removeProject($this);
         }
 
         return $this;

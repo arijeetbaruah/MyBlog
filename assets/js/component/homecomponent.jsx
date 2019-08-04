@@ -18,6 +18,12 @@ import {
     faCode,
     faMapMarkedAlt
 } from '@fortawesome/free-solid-svg-icons';
+import {
+  faLinkedinIn,
+  faTwitter,
+  faGithub
+} from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import profile from '../../images/arijeetbaruah.jpg';
 
 const styles = theme => ({
@@ -164,16 +170,13 @@ class HomeComponent extends Component {
 
                             <div className={classes.section}>
                                 <p><Words animate show={anim.entered}>
-                                I am a Gameplay and Tool Developer with one year experience in Software Development. I am Eager to learn and a quick study, with experience in Team work and Solo projects. I have made 8 home build games all available on the website.
+                                I am a Gameplay and Tool Developer with one year experience in Software Development. I am Eager to learn and a quick study, with experience in Team work and Solo projects.
                                 </Words></p>
                             </div>
                                 <div className={classes.section}>
                                     <Link className={classes.detail} href='https://linkedin.com/in/arijeet-baruah/' target='linkedin' onLink={this.onLink}>
                                         <TextIcon className={classes.textIcon} show={anim.entered} icon={faCode}>Gameplay Programmer</TextIcon>
                                     </Link>
-                                    {/* <Link className={classes.detail} href='https://hugeinc.com' target='_blank' onLink={this.onLink}>
-                                        <TextIcon className={classes.textIcon} show={anim.entered} icon='briefcase-outline'>Huge</TextIcon>
-                                    </Link> */}
                                     <Link className={classes.detail} href='https://www.google.com.co/maps/place/India' target='_blank' onLink={this.onLink}>
                                         <TextIcon className={classes.textIcon} show={anim.entered} icon={faMapMarkedAlt}>India</TextIcon>
                                     </Link>
@@ -189,7 +192,35 @@ class HomeComponent extends Component {
                                             {anim2 => <Words animate show={anim2.entered}>Project</Words>}
                                         </Button>
                                     </Link>
+                                    <Link className={classes.detail} href='/experience' onLink={this.onLink}>
+                                        <Button className={classes.button} animate show={anim.entered}>
+                                            {anim2 => <Words animate show={anim2.entered}>Experience</Words>}
+                                        </Button>
+                                    </Link>
                                 </div>
+                              <div className={classes.section}>
+                                <Words>Feel free to send me a message here: </Words>
+                                <Link className={classes.detail} target='_blank' href='mailto:arijeetbaruah@gmail.com?Subject=Hey!' onLink={this.onLink}>
+                                  <Words>arijeetbaruah@gmail.com</Words>
+                                </Link>
+                              </div>
+                              <div className={classes.section}>
+                                <Link className={classes.detail} href='https://linkedin.com/in/arijeet-baruah/' target='_blank' onLink={this.onLink}>
+                                    <Button className={classes.button} animate show={anim.entered}>
+                                      <FontAwesomeIcon icon={faLinkedinIn} />
+                                    </Button>
+                                </Link>
+                                <Link className={classes.detail} href='https://twitter.com/thegamecreator5' target='_blank' onLink={this.onLink}>
+                                    <Button className={classes.button} animate show={anim.entered}>
+                                      <FontAwesomeIcon icon={faTwitter} />
+                                    </Button>
+                                </Link>
+                                <Link className={classes.detail} href='https://github.com/ArijeetBaruah' target='_blank' onLink={this.onLink}>
+                                    <Button className={classes.button} animate show={anim.entered}>
+                                      <FontAwesomeIcon icon={faGithub} />
+                                    </Button>
+                                </Link>
+                              </div>
                             </Content>
                         </div>
                     )

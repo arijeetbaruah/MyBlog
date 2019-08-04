@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,16 +29,6 @@ class Experience
     private $body;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $modified_at;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $created_at;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $start_date;
@@ -45,6 +37,16 @@ class Experience
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $end_date;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Projects", inversedBy="experiences")
+     */
+    private $Projects;
+
+    public function __construct()
+    {
+        $this->Projects = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,30 +77,6 @@ class Experience
         return $this;
     }
 
-    public function getModifiedAt(): ?\DateTimeInterface
-    {
-        return $this->modified_at;
-    }
-
-    public function setModifiedAt(\DateTimeInterface $modified_at): self
-    {
-        $this->modified_at = $modified_at;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $created_at): self
-    {
-        $this->created_at = $created_at;
-
-        return $this;
-    }
-
     public function getStartDate(): ?\DateTimeInterface
     {
         return $this->start_date;
@@ -121,5 +99,36 @@ class Experience
         $this->end_date = $end_date;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Projects[]
+     */
+    public function getProjects(): Collection
+    {
+        return $this->Projects;
+    }
+
+    public function addProject(Projects $project): self
+    {
+        if (!$this->Projects->contains($project)) {
+            $this->Projects[] = $project;
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Projects $project): self
+    {
+        if ($this->Projects->contains($project)) {
+            $this->Projects->removeElement($project);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 }

@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AppController!{% endblock %}
+{% block title %}Page Not Found!{% endblock %}
 
 {% block stylesheets %}
 {{ parent() }}
+{{ encore_entry_link_tags('error') }}
 {% endblock %}
 
 {% block javascripts %}
 {{ parent() }}
+{{ encore_entry_script_tags('error') }}
 {% endblock %}
 
 {% block body %}
-You Are Offline
+<div id="app-root"></div>
 {% endblock %}

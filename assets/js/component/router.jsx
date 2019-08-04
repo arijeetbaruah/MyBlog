@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ThemeProvider, createTheme, SoundsProvider, createSounds } from 'arwes';
 import HomeComponent from './homecomponent';
@@ -7,9 +7,12 @@ import ViewSkillComponent from './skill/viewSkill';
 import ListSkillComponent from './skill/listSkill';
 import ListProjectComponent from './project/list';
 import ViewProjectComponent from './project/view';
+import ListExperienceComponent from './experience/list';
+import ViewExperienceComponent from './experience/view';
 import store from '../reducer/index';
 import { createAppTheme, sounds } from '../withTemplate';
 import history from '../history';
+import NotFound from './error';
 
 const RouterComponent = () => {
     return (
@@ -23,6 +26,9 @@ const RouterComponent = () => {
                             <Route path="/skill/:id" component={ViewSkillComponent} />
                             <Route exact path="/project" component={ListProjectComponent} />
                             <Route exact path="/project/:id" component={ViewProjectComponent} />
+                            <Route exact path="/experience" component={ListExperienceComponent} />
+                            <Route path="/experience/:id" component={ViewExperienceComponent} />
+                            <Route component={NotFound} />
                         </Switch>
                     </Router>
                 </Provider>

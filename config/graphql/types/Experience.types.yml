@@ -1,0 +1,17 @@
+Experience:
+  type: object
+  config:
+    description: "Experience"
+    fields:
+      id:
+        type: "Int"
+      title:
+        type: "String"
+      body:
+        type: "String"
+      Projects:
+        type: "[Project]"
+      start_date:
+        type: "DateTime"
+      end_date:
+        type: "DateTime"

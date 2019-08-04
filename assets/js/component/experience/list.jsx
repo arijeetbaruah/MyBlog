@@ -15,13 +15,12 @@ import {
     Words
 } from 'arwes';
 import {
-    GetSkills
-} from '../../action/skill';
+    GetExperiences
+} from '../../action/experience';
 import Wrap from '../wrap';
 import Header from '../header';
 import Footer from '../Footer';
 import { resources } from '../../withTemplate';
-import history from '../../history';
 
 const styles = theme => ({
     root: {
@@ -73,7 +72,7 @@ class SkillComponent extends Component {
             getTheme: () => props.theme
         });
 
-        props.GetSkills();
+        props.GetExperiences();
         this.onLink = this.onLink.bind(this);
     }
 
@@ -99,7 +98,7 @@ class SkillComponent extends Component {
         const { classes } = this.props;
         const { background, pattern } = resources;
 
-        const { data, loading } = this.props.SkillReducer.skills;
+        const { data, loading } = this.props.ExperienceReducer.experiences;
 
         if (loading || _.isNull(data)) {
             return (<Arwes><Loading
@@ -112,7 +111,7 @@ class SkillComponent extends Component {
                 /></Arwes>)
         }
         
-        const { Skills } = data.data;
+        const { Experiences } = data.data;
 
         return (
             <>
@@ -145,10 +144,10 @@ class SkillComponent extends Component {
                                                     onEntered: () => this.setState({ animLvl2: true })
                                                 }}
                                                 />
-                                                <Words animate show={animLvl1}>Skills</Words>
+                                                <Words animate show={animLvl1}>Experiences</Words>
                                             <Appear className={`mdi mdi-chevron-double-left ${classes.titleRight}`} animate show={animLvl1} />
                                             {
-                                                _.map(Skills, (skill, key) => (
+                                                _.map(Experiences, (skill, key) => (
                                                     <Project
                                                         animate
                                                         show={anim.entered}
@@ -158,7 +157,7 @@ class SkillComponent extends Component {
                                                             onEntered: () => this.setState({ animLvl3: true })
                                                         }}
                                                         onClick={() => {
-                                                            window.open(`/skill/${skill.id}`);
+                                                            window.open(`/experience/${skill.id}`);
                                                         }}
                                                         >
                                                             <Appear
@@ -168,7 +167,7 @@ class SkillComponent extends Component {
                                                                     onEntered: () => this.setState({ animLvl3: true })
                                                                 }}
                                                                 />
-                                                                <Words animate show={animLvl3}>{`Level: ${skill.level}`}</Words>
+                                                                <div dangerouslySetInnerHTML={{ __html: skill.body }}/>
                                                             <Appear className={`mdi mdi-chevron-double-left ${classes.titleRight}`} animate show={animLvl1} />
                                                     </Project>
                                                 ))
@@ -192,11 +191,11 @@ class SkillComponent extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    SkillReducer: state.SkillReducer
+    ExperienceReducer: state.ExperienceReducer
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    GetSkills: () => dispatch(GetSkills())
+    GetExperiences: () => dispatch(GetExperiences())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(SkillComponent));

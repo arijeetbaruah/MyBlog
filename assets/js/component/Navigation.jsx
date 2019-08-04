@@ -2,21 +2,9 @@ import React from 'react';
 import { withStyles, Highlight, Appear, Words } from 'arwes';
 import _ from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCode,
-  faProjectDiagram
-} from '@fortawesome/free-solid-svg-icons';
 import Link from './link';
 
-const linksList = [{
-    name: 'Skills',
-    icon: faCode,
-    href: '/skill'
-}, {
-    name: 'Project',
-    icon: faProjectDiagram,
-    href: '/project'
-}];
+const linksList = [];
 
 const styles = theme => ({
     root: {

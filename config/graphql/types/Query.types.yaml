@@ -39,3 +39,16 @@ Query:
             description: "Resolves using the project title."
             type: "String"
         resolve: "@=resolver('Project', [args])"
+      Experiences:
+        type: "[Experience]"
+        resolve: "@=resolver('Experiences', [args])"
+      Experience:
+        type: "Experience"
+        args:
+          id:
+            description: "Resolves using the project id."
+            type: "Int"
+          title:
+            description: "Resolves using the project title."
+            type: "String"
+        resolve: "@=resolver('Experience', [args])"
