@@ -22,7 +22,11 @@ const Link = props => {
         ev.preventDefault();
         sounds.click && sounds.click.play();
         onClick && onClick(ev);
-    
+
+        if (href === 'javascript:void(0);') {
+          return;
+        }
+
         const { pathname, search } = window.location;
         if ((pathname + search === href) && href !== '/') {
           return;

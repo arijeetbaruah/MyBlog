@@ -133,7 +133,7 @@ class ListProjectComponent extends Component {
                                     animation={{
                                         onEntered: () => this.setState({ animLvl1: true })
                                     }}
-                                    onClick={this.onLink}
+                                    onLink={this.onLink}
                                     />
                                 <div ref={el => (this.mainEl = el)} className={classes.main}>
                                     <Wrap>

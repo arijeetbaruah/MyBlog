@@ -1,7 +1,13 @@
-import React from 'react';
-import { withStyles, Header as ArwesHeader, Row, Col } from 'arwes';
+import React, { Component } from 'react';
+import { withStyles, Header as ArwesHeader, Row, Col, Button, Appear } from 'arwes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faEllipsisH,
+  faEllipsisV
+} from '@fortawesome/free-solid-svg-icons';
 import Wrap from './wrap';
 import Brand from './brand';
+import Link from './link';
 import Navigation from './Navigation';
 
 const styles = theme => ({
@@ -25,14 +31,36 @@ const styles = theme => ({
     },
 });
 
-const Header = props => {
+class Header extends Component {
+  constructor() {
+    super();
+    this.state = {
+      showMenu: false,
+      showMenuEvent: false
+    };
+
+    this.toggleMenu = this.toggleMenu.bind(this);
+  }
+
+  toggleMenu() {
+    this.setState({
+      showMenuEvent: !this.state.showMenuEvent
+    });
+    setTimeout(() => {
+      this.setState({
+        showMenu: !this.state.showMenu
+      });
+    }, this.props.theme.animTime);
+  }
+
+  render() {
     const {
         theme,
         classes,
         className,
         onLink,
         ...etc
-    } = props;
+    } = this.props;
     const cls = `${classes.root} ${className}`;
 
     return (
@@ -49,7 +77,12 @@ const Header = props => {
                               <Brand show={anim.entered} onLink={onLink} />
                             </Col>
                             <Col s={12} m={6} className={classes.links}>
-                              <Navigation />
+                              <Link href="javascript:void(0);" onClick={this.toggleMenu}>
+                                <Button animate show={anim.entered}>
+                                  <FontAwesomeIcon icon={this.state.showMenu ? faEllipsisV : faEllipsisH} />
+                                </Button>
+                              </Link>
+                              {this.state.showMenu && <Navigation show={this.state.showMenuEvent} />}
                             </Col>
                         </Row>
                     </Wrap>
@@ -57,6 +90,7 @@ const Header = props => {
             }
         </ArwesHeader>
     );
-};
+  }
+}
 
 export default withStyles(styles)(Header);

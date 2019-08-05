@@ -25,10 +25,12 @@ export const createAppTheme = (theme = {}) => ({
   ...theme,
   color: {
     primary: generateColor('#30fffe'),
+    hover: generateColor('#395600'),
     ...theme.color
   },
   background: {
     primary: generateBackground('#031212'),
+    hover: generateBackground('#03e560'),
     ...theme.background
   },
 });
