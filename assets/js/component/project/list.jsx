@@ -15,13 +15,17 @@ import {
     Words
 } from 'arwes';
 import {
+    faAngleDoubleLeft,
+    faAngleDoubleRight
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
     GetProjects
 } from '../../action/project';
 import Wrap from '../wrap';
 import Header from '../header';
 import Footer from '../Footer';
 import { resources } from '../../withTemplate';
-import history from '../../history';
 
 const styles = theme => ({
     root: {
@@ -138,15 +142,21 @@ class ListProjectComponent extends Component {
                                 <div ref={el => (this.mainEl = el)} className={classes.main}>
                                     <Wrap>
                                         <Row col noMargin s={12}>
-                                            <Appear
-                                                animate
-                                                show={animLvl2}
-                                                animation={{
-                                                    onEntered: () => this.setState({ animLvl2: true })
-                                                }}
-                                                />
-                                                <Words animate show={animLvl1}>Project</Words>
-                                            <Appear className={`mdi mdi-chevron-double-left ${classes.titleRight}`} animate show={animLvl1} />
+                                            <h2>
+                                                <Appear
+                                                    animate
+                                                    show={animLvl1}
+                                                    animation={{
+                                                        onEntered: () => this.setState({ animLvl2: true })
+                                                    }}
+                                                    >
+                                                    <FontAwesomeIcon icon={faAngleDoubleRight} />
+                                                </Appear>
+                                                    <Words animate show={animLvl1}>Projects</Words>
+                                                <Appear className={classes.titleRight} animate show={animLvl1} >
+                                                    <FontAwesomeIcon icon={faAngleDoubleLeft} />
+                                                </Appear>
+                                            </h2>
                                             {
                                                 _.map(Projects, (project, key) => (
                                                     <Project
