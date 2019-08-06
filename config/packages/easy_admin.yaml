@@ -8,6 +8,7 @@ easy_admin:
     menu:
       - 'Skills'
       - 'Experience'
+      - 'Educations'
       - label: 'Clients'
       - 'Projects'
       - 'ProjectCodeSnippets'
@@ -18,6 +19,15 @@ easy_admin:
     # List the entity class name you want to manage
     Skills:
       class: App\Entity\Skills
+    Educations:
+      class: App\Entity\Educations
+      form:
+        fields:
+          - institute
+          - body
+          - degree
+          - { property: 'start_date', type_options: { widget: 'single_text' } }
+          - { property: 'end_date', type_options: { widget: 'single_text' } }
     Projects:
       class: App\Entity\Projects
       form:

@@ -20,8 +20,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    GetProjects
-} from '../../action/project';
+    GetEducations
+} from '../../action/education';
 import Wrap from '../wrap';
 import Header from '../header';
 import Footer from '../Footer';
@@ -60,7 +60,7 @@ const styles = theme => ({
 });
   
 
-class ListProjectComponent extends Component {
+class ListEducationComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -77,7 +77,7 @@ class ListProjectComponent extends Component {
             getTheme: () => props.theme
         });
 
-        props.GetProjects();
+        props.GetEducations();
         this.onLink = this.onLink.bind(this);
     }
 
@@ -103,7 +103,7 @@ class ListProjectComponent extends Component {
         const { classes } = this.props;
         const { background, pattern } = resources;
 
-        const { data, loading } = this.props.ProjectReducer.projects;
+        const { data, loading } = this.props.EducationReducer.educations;
 
         if (loading || _.isNull(data)) {
             return (<Arwes><Loading
@@ -115,8 +115,8 @@ class ListProjectComponent extends Component {
                 }}
                 /></Arwes>)
         }
-
-        const { Projects } = data.data;
+        
+        const { Educations } = data.data;
 
         return (
             <>
@@ -152,33 +152,33 @@ class ListProjectComponent extends Component {
                                                     >
                                                     <FontAwesomeIcon icon={faAngleDoubleRight} />
                                                 </Appear>
-                                                    <Words animate show={animLvl1}>Projects</Words>
+                                                    <Words animate show={animLvl1}>Educations</Words>
                                                 <Appear className={classes.titleRight} animate show={animLvl1} >
                                                     <FontAwesomeIcon icon={faAngleDoubleLeft} />
                                                 </Appear>
                                             </h2>
                                             {
-                                                _.map(Projects, (project, key) => (
+                                                _.map(Educations, (education, key) => (
                                                     <Project
                                                         animate
                                                         show={anim.entered}
                                                         key={key}
-                                                        header={project.title}
+                                                        header={education.institute}
                                                         animation={{
-                                                            onEntered: () => this.setState({ animLvl3: true })
+                                                            onEntered: () => this.setState({ animLvl2: true })
                                                         }}
                                                         onClick={() => {
-                                                            window.open(`/project/${project.id}`);
+                                                            window.open(`/education/${education.id}`);
                                                         }}
                                                         >
                                                             <Appear
                                                                 animate
-                                                                show={animLvl3}
+                                                                show={animLvl2}
                                                                 animation={{
                                                                     onEntered: () => this.setState({ animLvl3: true })
                                                                 }}
                                                                 >
-                                                                <div dangerouslySetInnerHTML={{__html: project.body}} />
+                                                                <div dangerouslySetInnerHTML={{__html: education.body}} />
                                                             </Appear>
                                                     </Project>
                                                 ))
@@ -202,11 +202,11 @@ class ListProjectComponent extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    ProjectReducer: state.ProjectReducer
+    EducationReducer: state.EducationReducer
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    GetProjects: () => dispatch(GetProjects())
+    GetEducations: () => dispatch(GetEducations())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ListProjectComponent));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ListEducationComponent));
