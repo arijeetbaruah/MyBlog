@@ -4,13 +4,16 @@ import _ from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCode,
+  faBriefcase,
+  faProjectDiagram,
+  faSchool
 } from '@fortawesome/free-solid-svg-icons';
 import Link from './link';
 
 const linksList = [
   {
     name: 'Projects',
-    icon: faCode,
+    icon: faProjectDiagram,
     href: '/project'
   },
   {
@@ -20,8 +23,13 @@ const linksList = [
   },
   {
     name: 'Experience',
-    icon: faCode,
+    icon: faBriefcase,
     href: '/experience'
+  },
+  {
+    name: 'Education',
+    icon: faSchool,
+    href: '/education'
   },
 ];
 

@@ -1,0 +1,17 @@
+Educations:
+  type: object
+  config:
+    description: "Educations"
+    fields:
+      id:
+        type: "Int"
+      institute:
+        type: "String"
+      body:
+        type: "String"
+      degree:
+        type: "String"
+      start_date:
+        type: "DateTime"
+      end_date:
+        type: "DateTime"

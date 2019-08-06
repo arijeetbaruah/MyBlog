@@ -5,11 +5,13 @@ import promise from 'redux-promise-middleware';
 import SkillReducer from './skill';
 import ProjectReducer from './project';
 import ExperienceReducer from './experience';
+import EducationReducer from './education';
 
 const reducers = combineReducers({
     SkillReducer,
     ProjectReducer,
-    ExperienceReducer
+    ExperienceReducer,
+    EducationReducer
 });
 
 const middleware = applyMiddleware(thunk, Logger, promise);

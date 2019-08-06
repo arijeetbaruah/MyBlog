@@ -9,6 +9,8 @@ import ListProjectComponent from './project/list';
 import ViewProjectComponent from './project/view';
 import ListExperienceComponent from './experience/list';
 import ViewExperienceComponent from './experience/view';
+import ListEducationComponent from './education/list';
+import ViewEducationComponent from './education/view';
 import store from '../reducer/index';
 import { createAppTheme, sounds } from '../withTemplate';
 import history from '../history';
@@ -28,6 +30,8 @@ const RouterComponent = () => {
                             <Route exact path="/project/:id" component={ViewProjectComponent} />
                             <Route exact path="/experience" component={ListExperienceComponent} />
                             <Route path="/experience/:id" component={ViewExperienceComponent} />
+                            <Route exact path="/education" component={ListEducationComponent} />
+                            <Route path="/education/:id" component={ViewEducationComponent} />
                             <Route component={NotFound} />
                         </Switch>
                     </Router>

@@ -197,6 +197,11 @@ class HomeComponent extends Component {
                                             {anim2 => <Words animate show={anim2.entered}>Experience</Words>}
                                         </Button>
                                     </Link>
+                                    <Link className={classes.detail} href='/education' onLink={this.onLink}>
+                                        <Button className={classes.button} animate show={anim.entered}>
+                                            {anim2 => <Words animate show={anim2.entered}>Education</Words>}
+                                        </Button>
+                                    </Link>
                                 </div>
                               <div className={classes.section}>
                                 <Words>Feel free to send me a message here: </Words>
