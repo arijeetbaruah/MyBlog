@@ -170,7 +170,7 @@ class HomeComponent extends Component {
 
                             <div className={classes.section}>
                                 <p><Words animate show={anim.entered}>
-                                I am a Gameplay and Tool Developer with one year experience in Software Development. I am Eager to learn and a quick study, with experience in Team work and Solo projects.
+                                I am a Gameplay and Tool Developer with two year experience in Software Development. I am Eager to learn and a quick study, with experience in Team work and Solo projects.
                                 </Words></p>
                             </div>
                                 <div className={classes.section}>
