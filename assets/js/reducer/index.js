@@ -6,12 +6,14 @@ import SkillReducer from './skill';
 import ProjectReducer from './project';
 import ExperienceReducer from './experience';
 import EducationReducer from './education';
+import CertificateReducer from './certificate';
 
 const reducers = combineReducers({
     SkillReducer,
     ProjectReducer,
     ExperienceReducer,
-    EducationReducer
+    EducationReducer,
+    CertificateReducer
 });
 
 const middleware = applyMiddleware(thunk, Logger, promise);
