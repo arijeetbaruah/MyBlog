@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AppController extends AbstractController
 {
     /**
-     * @Route("/{page}/{id}", name="app", requirements={"page" = "home|skill|project|experience|education"}, defaults={"page" = "home", "id" = null})
+     * @Route("/{page}/{id}", name="app", requirements={"page" = "home|skill|project|experience|education|certificate"}, defaults={"page" = "home", "id" = null})
      */
     public function index($page)
     {

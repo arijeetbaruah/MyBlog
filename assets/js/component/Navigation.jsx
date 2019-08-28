@@ -6,7 +6,8 @@ import {
   faCode,
   faBriefcase,
   faProjectDiagram,
-  faSchool
+  faSchool,
+  faCertificate
 } from '@fortawesome/free-solid-svg-icons';
 import Link from './link';
 
@@ -30,6 +31,11 @@ const linksList = [
     name: 'Education',
     icon: faSchool,
     href: '/education'
+  },
+  {
+    name: 'Certificate',
+    icon: faCertificate,
+    href: '/certificate'
   },
 ];
 
